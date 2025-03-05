@@ -15,4 +15,6 @@ public interface IEventSubject<T> {
     void unsuscribe(String event, IObserver observer);
 
     void emit(String event, T arg);
+
+    void emit(String event);
 }

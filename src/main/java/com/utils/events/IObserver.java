@@ -11,4 +11,6 @@ package com.utils.events;
 public interface IObserver<T> {
 
     void update(T value);
+
+    void update();
 }

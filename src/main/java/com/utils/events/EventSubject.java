@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public abstract class EventSubject<T> implements IEventSubject<T> {
 
-    private final Map<String, List<IObserver>> observers = new HashMap<>();
+    private final Map<String, List<IObserver>> observers = new HashMap();
 
     @Override
     public void suscribe(String event, final IObserver observer) {
@@ -40,16 +40,20 @@ public abstract class EventSubject<T> implements IEventSubject<T> {
         }
     }
 
-    private List<IObserver> getOrCreateObservers(String event) {
-        final List<IObserver> _observers;
+    @Override
+    public void emit(String event) {
+        if (this.observers.containsKey(event)) {
+            List<IObserver> _observers = this.observers.get(event);
+            _observers.forEach(_obs -> _obs.update());
+        }
+    }
 
-        if (!this.observers.containsKey(event)) {
-            _observers = new ArrayList();
-        } else {
-            _observers = this.observers.get(event);
+    private List<IObserver> getOrCreateObservers(String event) {
+        if (this.observers.containsKey(event)) {
+            return this.observers.get(event);
         }
 
-        return _observers;
+        return new ArrayList<>();
     }
 
 }
