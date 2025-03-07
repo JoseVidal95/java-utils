@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author jvidal
  */
-public abstract class EventSubject<T> implements IEventSubject<T> {
+public abstract class EventHost<T> implements IEventHost<T> {
 
     private final Map<String, List<IObserver>> observers = new HashMap();
 

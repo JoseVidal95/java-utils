@@ -8,7 +8,7 @@ package com.utils.events;
  *
  * @author jvidal
  */
-public interface IEventSubject<T> {
+public interface IEventHost<T> {
 
     void suscribe(String event, IObserver observer);
 
