@@ -12,5 +12,11 @@ import java.util.List;
  */
 public interface IArrayUtils {
 
-    <T> List<T> zip(T[]... arrays);
+    <T> List<T> zip(List<T>... arrays);
+
+    <T> T[] zip(T[]... arrays);
+
+    <T> boolean equals(List<T> a1, List<T> a2);
+
+    <T> boolean equals(T[] a1, T[] a2);
 }

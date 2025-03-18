@@ -4,6 +4,8 @@
  */
 package com.utils.events;
 
+import com.utils.constants.LogContext;
+import com.utils.logs.ILogService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.Map;
 public abstract class EventHost<T> implements IEventHost<T> {
 
     private final Map<String, List<IObserver>> observers = new HashMap();
+    protected ILogService logger;
 
     @Override
     public void suscribe(String event, final IObserver observer) {
@@ -36,7 +39,7 @@ public abstract class EventHost<T> implements IEventHost<T> {
     public void emit(String event, T arg) {
         if (this.observers.containsKey(event)) {
             List<IObserver> _observers = this.observers.get(event);
-            _observers.forEach(_obs -> _obs.update(arg));
+            _observers.forEach(_obs -> this.emit(event, _obs, arg));
         }
     }
 
@@ -44,8 +47,18 @@ public abstract class EventHost<T> implements IEventHost<T> {
     public void emit(String event) {
         if (this.observers.containsKey(event)) {
             List<IObserver> _observers = this.observers.get(event);
-            _observers.forEach(_obs -> _obs.update());
+            _observers.forEach(_obs -> this.emit(event, _obs));
         }
+    }
+
+    private void emit(String event, IObserver observer, T arg) {
+        this.log(event, arg);
+        observer.update(arg);
+    }
+
+    private void emit(String event, IObserver observer) {
+        this.log(event, (T) "void");
+        observer.update();
     }
 
     private List<IObserver> getOrCreateObservers(String event) {
@@ -53,7 +66,13 @@ public abstract class EventHost<T> implements IEventHost<T> {
             return this.observers.get(event);
         }
 
-        return new ArrayList<>();
+        return new ArrayList();
+    }
+
+    private void log(String event, T arg) {
+        if (this.logger != null) {
+            this.logger.info(LogContext.EVENT, "Emitted event: " + event + "\nArgs: " + arg.toString());
+        }
     }
 
 }
