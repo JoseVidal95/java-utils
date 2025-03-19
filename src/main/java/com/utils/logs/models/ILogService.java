@@ -2,10 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.utils.logs;
-
-import com.utils.constants.ILogContextEnum;
-import com.utils.constants.ILogSeverityEnum;
+package com.utils.logs.models;
 
 /**
  *

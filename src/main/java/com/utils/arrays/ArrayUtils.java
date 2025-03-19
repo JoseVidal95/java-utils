@@ -4,6 +4,9 @@
  */
 package com.utils.arrays;
 
+import com.utils.arrays.models.IArrayUtils;
+import com.utils.arrays.models.IMapFunction;
+import com.utils.arrays.models.IReducerFunction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +62,27 @@ public class ArrayUtils implements IArrayUtils {
     @Override
     public <T> boolean equals(T[] a1, T[] a2) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public <T, K> List<K> map(T[] array, IMapFunction<T, K> callback) {
+        List<K> mapped = new ArrayList();
+        for (int i = 0; i < array.length; i++) {
+            mapped.add(callback.run(array[i], i, array));
+        }
+
+        return mapped;
+    }
+
+    @Override
+    public <T, K> K reduce(T[] array, K initial, IReducerFunction<T, K> callback) {
+        K value = initial;
+
+        for (int i = 0; i < array.length; i++) {
+            value = callback.run(array[i], value, i, array);
+        }
+
+        return value;
     }
 
 }

@@ -4,6 +4,8 @@
  */
 package com.utils.constants;
 
+import com.utils.logs.models.ILogContextEnum;
+
 /**
  *
  * @author jvidal

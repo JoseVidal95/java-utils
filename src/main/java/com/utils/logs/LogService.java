@@ -4,8 +4,10 @@
  */
 package com.utils.logs;
 
-import com.utils.constants.ILogContextEnum;
-import com.utils.constants.ILogSeverityEnum;
+import com.utils.logs.models.ILogService;
+import com.utils.logs.models.ILogAdapter;
+import com.utils.logs.models.ILogContextEnum;
+import com.utils.logs.models.ILogSeverityEnum;
 import com.utils.constants.LogContext;
 
 /**
