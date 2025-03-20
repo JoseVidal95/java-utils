@@ -4,11 +4,10 @@
  */
 package com.utils.logs;
 
-import com.utils.logs.models.ILogService;
 import com.utils.logs.models.ILogAdapter;
 import com.utils.logs.models.ILogContextEnum;
+import com.utils.logs.models.ILogService;
 import com.utils.logs.models.ILogSeverityEnum;
-import com.utils.constants.LogContext;
 
 /**
  *
@@ -31,7 +30,6 @@ public class LogService implements ILogService {
         public String getValue() {
             return this.value;
         }
-
     }
 
     private final ILogAdapter adapter;
@@ -75,7 +73,6 @@ public class LogService implements ILogService {
         }
 
         this.adapter.error(this.buildMessage(LogContext.SERVICE, "Log severity not allowed"));
-
     }
 
     private String buildMessage(ILogContextEnum context, String message) {

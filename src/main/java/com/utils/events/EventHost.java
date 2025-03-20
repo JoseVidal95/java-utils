@@ -6,7 +6,7 @@ package com.utils.events;
 
 import com.utils.events.models.IEventHost;
 import com.utils.events.models.IObserver;
-import com.utils.constants.LogContext;
+import com.utils.logs.LogContext;
 import com.utils.logs.models.ILogService;
 import java.util.ArrayList;
 import java.util.HashMap;

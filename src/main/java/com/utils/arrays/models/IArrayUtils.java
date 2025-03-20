@@ -12,15 +12,11 @@ import java.util.List;
  */
 public interface IArrayUtils {
 
+    <T> List<T> concatenate(T[]... arrays);
+
     <T, K> K reduce(T[] array, K initial, IReducerFunction<T, K> callback);
 
     <T, K> List<K> map(T[] array, IMapFunction<T, K> callback);
 
-    <T> List<T> zip(List<T>... arrays);
-
-    <T> T[] zip(T[]... arrays);
-
-    <T> boolean equals(List<T> a1, List<T> a2);
-
-    <T> boolean equals(T[] a1, T[] a2);
+    <T> List<T> zip(T[]... arrays);
 }
